@@ -44,6 +44,8 @@ Things you may want to cover:
 - has_many :records
 - has_many :products
 - has_one :address
+- has_one :order
+
 
 ## products テーブル
 
@@ -61,8 +63,8 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :users
-- has_one :orders
+- belongs_to :user
+- has_one :order
 
 
 ## orders テーブル
@@ -81,14 +83,15 @@ Things you may want to cover:
 
 | Column            | Type        | options                        |
 | ----------------  | ----------  | ------------------------------ |
-| post_number       | integer     | null: false                    |
+| post_number       | string      | null: false                    |
 | prefecture_id     | integer     | null: false                    |
 | city              | string      | null: false                    |
-| address           | text        | null: false                    |
-| building          | text        |                                |
-| tel               | integer     | null: false                    |
-| user_id           | references  | null: false, foreign_key: true |
+| address           | string      | null: false                    |
+| building          | string      |                                |
+| tel               | string      | null: false                    |
+| user              | references  | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_tp :order
