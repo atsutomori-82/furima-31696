@@ -36,14 +36,13 @@ Things you may want to cover:
 | first_name         | string  | null: false             |
 | family_name_kana   | string  | null: false             |
 | first_name_kana    | string  | null: false             |
-| birth_day          | integer | null: false             |
+| date               | integer | null: false             |
 
 
 ### Association
 
-- has_many :records
+- has_many :orders
 - has_many :products
-- has_one :address
 - has_one :order
 
 
@@ -72,12 +71,15 @@ Things you may want to cover:
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
 | user            | references  | null: false, foreign_key: true |
-| products        | references  | null: false, foreign_key: true |
+| product         | references  | null: false, foreign_key: true |
+| address         | references  | null: false, foreign_key: true |
+
 
 ### Association
 
-- belongs_to :products
-- belongs_to :users
+- belongs_to :product
+- belongs_to :user
+- has_one :address
 
 ## address テーブル
 
@@ -89,9 +91,9 @@ Things you may want to cover:
 | address           | string      | null: false                    |
 | building          | string      |                                |
 | tel               | string      | null: false                    |
-| user              | references  | null: false, foreign_key: true |
+| product           | references  | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_tp :order
+- belongs_to :product
+- belongs_to :order
