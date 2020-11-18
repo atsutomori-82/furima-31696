@@ -27,18 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column           | Type    | options                 |
-| -----------------| ------- | ----------------------- |
-| nickname         | string  | null:false       |
-| email            | string  | null:false, unque: true |
-| password         | string  | null: false             |
-| family_name      | string  | null: false             |
-| first_name       | string  | null: false             |
-| family_name_kana | string  | null: false             |
-| first_name_kana | string  | null: false             |
-| birth_year       | integer | null: false             |
-| birth_month      | integer | null: false             |
-| birth_day        | integer | null: false             |
+| Column             | Type    | options                 |
+| ------------------ | ------- | ----------------------- |
+| nickname           | string  | null:false       |
+| email              | string  | null:false, unque: true |
+| encrypted_password | string  | null: false             |
+| family_name        | string  | null: false             |
+| first_name         | string  | null: false             |
+| family_name_kana   | string  | null: false             |
+| first_name_kana    | string  | null: false             |
+| birth_day          | integer | null: false             |
 
 
 ### Association
@@ -49,27 +47,28 @@ Things you may want to cover:
 
 ## products テーブル
 
-| Column       | Type       | options      |
-| ------------ | ---------  | ------------ |
-| name         | string     | null: false  |
-| text         | text       | null: false  |
-| category     | string     | null: false  |
-| condition    | string     | null: false  | 
-| shipping     | string     | null: false  |
-| region       | string     | null: false  |
-| shipping_day | integer    | null: false  |
-| price        | integer    | null: false  |
+| Column          | Type        | Options                        |
+| --------------- | ----------  | ------------------------------ |
+| name            | string      | null: false                    |
+| text            | text        | null: false                    |
+| category_id     | integer     | null: false                    |
+| condition_id    | integer     | null: false                    | 
+| shipping_id     | integer     | null: false                    |
+| region_id       | integer     | null: false                    |
+| shipping_day_id | integer     | null: false                    |
+| price           | integer     | null: false                    |
+| user            | references  | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :users
 - has_one :orders
 
+
 ## orders テーブル
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
-| purchase_date   | integer     | null: false,                   |
 | user            | references  | null: false, foreign_key: true |
 | products        | references  | null: false, foreign_key: true |
 
@@ -80,15 +79,15 @@ Things you may want to cover:
 
 ## address テーブル
 
-| Column      | Type        | options                        |
-| ----------  | ----------  | ------------------------------ |
-| post_number | integer     | null: false                    |
-| add1        | string      | null: false                    |
-| add2        | string      | null: false                    |
-| add3        | text        | null: false                    |
-| add4        | text        |                                |
-| tel         | integer     | null: false                    |
-| user_id     | references  | null: false, foreign_key: true |
+| Column            | Type        | options                        |
+| ----------------  | ----------  | ------------------------------ |
+| post_number       | integer     | null: false                    |
+| prefecture_id     | integer     | null: false                    |
+| city              | string      | null: false                    |
+| address           | text        | null: false                    |
+| building          | text        |                                |
+| tel               | integer     | null: false                    |
+| user_id           | references  | null: false, foreign_key: true |
 
 ### Association
 
