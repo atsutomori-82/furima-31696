@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
     it "first_nameカタカナ以外では登録できない" do
       @user.first_name = 'あ亜Aa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Family name is invalid")
+      expect(@user.errors.full_messages).to include("First name is invalid")
     end
     it "birthdayが空では登録できない" do
       @user.birthday = ''
