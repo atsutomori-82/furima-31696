@@ -7,11 +7,22 @@ class User < ApplicationRecord
          has_many :orders
          has_many :products
 
-         validates :nickname, presence: true, length: { maximum: 40 }
-         validates :family_name, presence: true
-         validates :first_name, presence: true
-         validates :family_name_kana, presence: true
-         validates :first_name_kana, presence: true
-         validates :birthday, presence: true
-
+        with_options presence: true do
+         validates :nickname, length: { maximum: 40 }
+         validates :family_name
+         validates :first_name
+         validates :family_name_kana
+         validates :first_name_kana
+         validates :birthday
         end
+         with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
+          validates :family_name
+          validates :first_name
+         end
+         with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } do
+          validates :family_name_kana
+          validates :first_name_kana 
+        end
+          VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
+          validates :password, format: { with: VALID_PASSWORD_REGEX }
+      end
