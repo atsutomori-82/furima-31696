@@ -45,7 +45,7 @@ Things you may want to cover:
 - has_many :products
 
 
-## products テーブル
+## items テーブル
 
 | Column          | Type        | Options                        |
 | --------------- | ----------  | ------------------------------ |
