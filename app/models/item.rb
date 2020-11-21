@@ -11,6 +11,7 @@ class Item < ApplicationRecord
    validates :shipping_id
    validates :region_id
    validates :shipping_day_id
-   validates :price
   end
-end
+
+   validates :price, format: { with: \d{4,10} } do
+  end
