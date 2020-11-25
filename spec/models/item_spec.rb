@@ -29,6 +29,11 @@ RSpec.describe Item, type: :model do
     @item.valid?  
     expect(@item.errors.full_messages).to include("Category is not a number")
   end
+  it "カテゴリーが --- の時は出品できない" do
+    @item.category_id = 1
+    @item.valid?  
+    expect(@item.errors.full_messages).to include("Category must be other than 1")
+  end
   it "商品の状態についての情報が必須であること" do
     @item.condition_id = ''
     @item.valid?  
@@ -38,6 +43,11 @@ RSpec.describe Item, type: :model do
     @item.condition_id = 'あ亜ア'
     @item.valid?  
     expect(@item.errors.full_messages).to include("Condition is not a number")
+  end
+  it "商品の状態が --- の時は出品できない" do
+    @item.condition_id = 1
+    @item.valid?  
+    expect(@item.errors.full_messages).to include("Condition must be other than 1")
   end
   it "配送料の負担についての情報が必須であること" do
     @item.shipping_id = ''
@@ -49,17 +59,25 @@ RSpec.describe Item, type: :model do
     @item.valid?  
     expect(@item.errors.full_messages).to include("Shipping is not a number")
   end
- 
+  it "配送料の負担が --- の時は出品できない" do
+    @item.shipping_id = 1
+    @item.valid?  
+    expect(@item.errors.full_messages).to include("Shipping must be other than 1")
+  end
   it "発送元の地域についての情報が必須であること" do
     @item.region_id = ''
     @item.valid?  
     expect(@item.errors.full_messages).to include("Region can't be blank")
   end
-
   it "発送元の地域について数字で入力されていること" do
     @item.region_id = 'あ亜ア'
     @item.valid?  
     expect(@item.errors.full_messages).to include("Region is not a number")
+  end
+  it "発送元の地域が --- の時は出品できない" do
+    @item.region_id = 1
+    @item.valid?  
+    expect(@item.errors.full_messages).to include("Region must be other than 1")
   end
   it "発送までの日数についての情報が必須であること" do
     @item.shipping_day_id = ''
@@ -72,6 +90,11 @@ RSpec.describe Item, type: :model do
     @item.valid?  
     expect(@item.errors.full_messages).to include("Shipping day is not a number")
   end
+  it "発送日までの日数が --- の時は出品できない" do
+    @item.shipping_day_id = 1
+    @item.valid?  
+    expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
+  end
   it "価格についての情報が必須であること" do
     @item.price = ''
     @item.valid?  
@@ -83,12 +106,12 @@ RSpec.describe Item, type: :model do
     expect(@item.errors.full_messages).to include("Price is invalid")
   end
   it "商品は￥300以上でなくては出品できない" do
-    @item.price = '299'
+    @item.price = 299
     @item.valid? 
     expect(@item.errors.full_messages).to include("Price must be greater than 299")
   end
   it "商品は￥9,999,999でなくては出品できない" do
-    @item.price = '10000000'
+    @item.price = 10000000
     @item.valid? 
     expect(@item.errors.full_messages).to include("Price must be less than 10000000")
   end
