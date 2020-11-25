@@ -19,6 +19,7 @@ class Item < ApplicationRecord
   
 
   with_options presence: true do
+   validates :image
    validates :name
    validates :text
    validates :category_id
@@ -26,7 +27,7 @@ class Item < ApplicationRecord
    validates :shipping_id
    validates :region_id
    validates :shipping_day_id
-   validates :price
+   validates :price ,numericality: { greater_than:299, less_than:10000000 }
   end
 
    validates :price, format: { with: /\d{4,7}/ } do
