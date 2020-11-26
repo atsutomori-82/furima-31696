@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index
-    #@items = Item.all.order("created_at DESC")
+    @items = Item.all.includes(:user, "created_at DESC")
   end
 
   def create
@@ -13,6 +13,9 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   def new
