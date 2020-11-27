@@ -1,14 +1,8 @@
 class ApplicationController < ActionController::Base
   #basic認証用コード
   #before_action :basic_auth
-  before_action :authenticate_user!
-  before_action :configure_permitted_parameters, if: :devise_controller?
 
-
-  private
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birthday])
-  end
+  #private
 
   #basic認証用コード
   #def basic_auth
