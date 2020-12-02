@@ -1,11 +1,9 @@
 class ItemOrder
   include ActiveModel::Model
-  attr_accessor :post_number, :region_id, :city, :address, :building, :tel, :price
+  attr_accessor :post_number, :region_id, :city, :address, :building, :tel, :price, :item_id, :user_id
 
 
 with_options presence: true do
-  validates :category_id
-  validates :condition_id
   validates :shipping_id
   validates :region_id
   validates :shipping_day_id

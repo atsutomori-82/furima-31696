@@ -1,13 +1,16 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!
+  
 
   def index
-    @order = Order.new
+    @item_order = ItemOrder.new
   end
 
   def def create
-    @order = Order.new(order_params)
-    if @order.valid?
-      @order.save
+    @item_order = ItemOrder.new(item_order_params)
+    if @item_order.valid?
+      @item_order.save
       return redirect_to root_path
     else
       render 'index'
@@ -16,8 +19,12 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:price)
+  def item_order_params
+    params.require(:item_order).permit(:post_number, :region_id, :city, :address, :building, :tel).merge(token: params[:token])
+  end
+
+  def set_item
+   @item = Item.find(params[:item_id])
   end
 
 end
