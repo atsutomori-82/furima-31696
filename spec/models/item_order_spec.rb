@@ -3,16 +3,17 @@ require 'rails_helper'
 RSpec.describe ItemOrder, type: :model do
   describe '商品購入情報の保存' do
     before do
-      @item_order = FactoryBot.build(:item_order)
+      @item_order = FactoryBot.build(:item_order, item_id: @item_id, user_id: @user_id)
     end
-    it '全てに正しい値を入力して保存成功' do
-      it 'すべてに正しい値を入力して保存成功' do
+
+      it '全てに正しい値を入力して保存成功' do
         expect(@item_order).to be_valid
       end
+
       it '郵便番号が空で失敗' do
-        @item_order.post_code = nil
+        @item_order.post_number = nil
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Post code can't be blank")
+        expect(@item_order.errors.full_messages).to include("Post number can't be blank")
       end
       it '都道府県が空で失敗' do
         @item_order.region_id = nil
@@ -66,4 +67,3 @@ RSpec.describe ItemOrder, type: :model do
       end
     end
   end
-end
