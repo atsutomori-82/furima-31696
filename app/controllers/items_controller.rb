@@ -41,10 +41,8 @@ class ItemsController < ApplicationController
     unless @item.user_id == current_user.id
       redirect_to action: :index
     end
-
     @item.destroy
     redirect_to root_path
-    
   end
 
   private

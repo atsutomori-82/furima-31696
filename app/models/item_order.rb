@@ -10,6 +10,8 @@ with_options presence: true do
   validates :city
   validates :address
   validates :tel, format: {with: /\A[0-9]{,11}\z/, message: "is invalid. Only integer"}
+  validates :user_id
+  validates :item_id
 end
 
 def save

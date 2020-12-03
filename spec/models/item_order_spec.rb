@@ -65,5 +65,15 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Tel is invalid. Only integer")
       end
+      it 'user_idが空だとして失敗' do
+        @item_order.user_id = ""
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("User can't be blank")
+      end
+      it '電話番号に数字以外を入力して失敗' do
+        @item_order.item_id = ""
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
