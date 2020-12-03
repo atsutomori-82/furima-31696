@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     if @item_order.valid?
       pay_item
       @item_order.save
-      redirect_to item_path(@item.id)
+      redirect_to action: :index
     else
       render 'index'
     end
