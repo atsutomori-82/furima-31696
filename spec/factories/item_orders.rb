@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :item_order do
+    token        {"tok_abcdefghijk00000000000000000"}
     post_number  {Faker::Number.number(digits: 3).to_s + '-' + Faker::Number.number(digits: 4).to_s}
     region_id    {Faker::Number.within(range: 2..48)}
     city         {Faker::Address.city}

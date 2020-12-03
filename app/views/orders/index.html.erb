@@ -14,7 +14,7 @@
         </h2>
         <div class='buy-item-price'>
           <p class='item-price-text'>¥<%= @item.price %></p>
-          <p class='item-price-sub-text'> <%= @item.shipping.name %></p>
+          <p class='item-price-sub-text'><%= @item.shipping.name %></p>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
           <label class="form-text">セキュリティコード</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :cvc,class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+        <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
       </div>
     </div>
     <%# /カード情報の入力 %>
@@ -124,6 +124,7 @@
     <%# /配送先の入力 %>
     <div class='buy-btn'>
       <%= f.submit "購入" ,class:"buy-red-btn" %>
+      
     </div>
     <% end %>
   </div>
