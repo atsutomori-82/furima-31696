@@ -22,6 +22,11 @@ class Item < ApplicationRecord
    validates :image
    validates :name
    validates :text
+   validates :category_id
+   validates :condition_id
+   validates :shipping_id
+   validates :region_id
+   validates :shipping_day_id
    validates :price ,numericality: { greater_than:299, less_than:10000000 }
   end
 

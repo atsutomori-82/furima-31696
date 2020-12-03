@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
         with_options presence: true do
          validates :nickname, length: { maximum: 40 }
+         validates :family_name
+         validates :first_name
+         validates :family_name_kana
+         validates :first_name_kana
          validates :birthday
         end
          with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
