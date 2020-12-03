@@ -32,7 +32,12 @@ RSpec.describe ItemOrder, type: :model do
       it '電話番号が空で失敗' do
         @item_order.tel = nil
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("tel can't be blank")
+        expect(@item_order.errors.full_messages).to include("Tel can't be blank")
+      end
+      it 'トークンが空で失敗' do
+        @item_order.token = nil
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Token can't be blank")
       end
       it '郵便番号に数字以外を入力して失敗' do
         @item_order.post_number = "abc"
