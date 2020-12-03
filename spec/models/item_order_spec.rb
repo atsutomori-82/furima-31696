@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe ItemOrder, type: :model do
   describe '商品購入情報の保存' do
     before do
-      @item_order = FactoryBot.build(:item_order, item_id: @item_id, user_id: @user_id)
+      @userA = FactoryBot.create(:user)
+      @userB = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item, user_id: @userA.id)
+      @item_order = FactoryBot.build(:item_order, item_id: @item.id, user_id: @userB.id)
     end
 
       it '全てに正しい値を入力して保存成功' do
@@ -65,12 +68,12 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Tel is invalid. Only integer")
       end
-      it 'user_idが空だとして失敗' do
+      it 'user_idが空だと失敗' do
         @item_order.user_id = ""
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("User can't be blank")
       end
-      it '電話番号に数字以外を入力して失敗' do
+      it 'item_idが空だと失敗' do
         @item_order.item_id = ""
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Item can't be blank")
