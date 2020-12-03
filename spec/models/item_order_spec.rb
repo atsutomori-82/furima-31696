@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+　
 RSpec.describe ItemOrder, type: :model do
   describe '商品購入情報の保存' do
     before do
