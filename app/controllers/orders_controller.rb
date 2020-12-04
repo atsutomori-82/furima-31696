@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
   before_action :set_item
-  before_action :authenticate_user!,except: [:index, :show]
-  before_action :move_to_root
+  before_action :authenticate_user!,only: [:index]
+
 
   def index
     @item_order = ItemOrder.new
+    if current_user.id == @item.user_id || @item.order
+      redirect_to root_path
+    end
   end
 
   def create
@@ -37,7 +40,6 @@ class OrdersController < ApplicationController
     )
   end
 
-  def move_to_root
-    redirect_to root_path if current_user.id == @item.user_id || @item.order
-  end
+    
+
 end
