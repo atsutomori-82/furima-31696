@@ -25,11 +25,11 @@ class OrdersController < ApplicationController
   end
 
   def set_item
-   @item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item[:price],
       card: item_order_params[:token],
@@ -38,9 +38,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_root
-    if current_user.id == @item.user_id || @item.order
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id || @item.order
   end
-
 end
