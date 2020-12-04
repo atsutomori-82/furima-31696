@@ -12,6 +12,10 @@ RSpec.describe ItemOrder, type: :model do
     it '全てに正しい値を入力して保存成功' do
       expect(@item_order).to be_valid
     end
+    it '建物名が空でも登録できる' do
+        @item_order.building = nil
+         expect(@item_order).to be_valid
+    end
 
     it '郵便番号が空で失敗' do
       @item_order.post_number = nil
