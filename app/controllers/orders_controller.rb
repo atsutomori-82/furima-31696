@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_item
-  before_action :authenticate_user!
+  before_action :authenticate_user!,except: [:index, :show]
   before_action :move_to_root
 
   def index
