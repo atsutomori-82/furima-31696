@@ -25,6 +25,6 @@ class Item < ApplicationRecord
     validates :price, numericality: { greater_than: 299, less_than: 10_000_000 }
   end
 
-  validates :price, format: { with: /\d{4,7}/ } do
-  end
+  #validates :price, format: { with: /\d{4,7}/ } do
+  #end
 end
